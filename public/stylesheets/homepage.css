@@ -1,0 +1,92 @@
+/* Reference: https://github.com/nax3t/background-slider/blob/master/public/stylesheets/landing.css */
+body{
+    background-color: black;
+}
+
+.bottom-navbar{
+	background-color: #eff7f7;
+	position: fixed;
+    bottom: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.slideshow { 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 50s linear infinite; 
+}
+
+.slideshow li:nth-child(1) { 
+  background-image: url(https://images.unsplash.com/photo-1452967712862-0cca1839ff27?ixlib=rb-0.3.5&s=f49797e54e7a2d409606b58ff02a7fa1&auto=format&fit=crop&w=1350&q=80) 
+}
+.slideshow li:nth-child(2) { 
+  background-image: url(https://images.unsplash.com/photo-1512805147242-c3e79caf64bf?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f89e5d8f05a055a7087b6e6ca146527e&auto=format&fit=crop&w=1350&q=80);
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url(https://images.unsplash.com/photo-1430931071372-38127bd472b8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=44fbbe943ff863591931eb71c157429d&auto=format&fit=crop&w=1348&q=80);
+  animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url(https://images.unsplash.com/photo-1445979323117-80453f573b71?ixlib=rb-0.3.5&s=19f33e332971b8d32225d913d989b2fa&auto=format&fit=crop&w=1353&q=80);
+  animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url(https://images.unsplash.com/photo-1479803244419-b24dfe9cbafa?ixlib=rb-0.3.5&s=d2e98a6fc665593fe0af82352b0a4401&auto=format&fit=crop&w=1350&q=80);
+  animation-delay: 40s; 
+}
+
+/* Older browser support - class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
+
+#landing-header {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: white;
+    text-shadow: 0px 4px 4px #b8b9ba
+}
+
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}

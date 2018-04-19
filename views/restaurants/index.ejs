@@ -1,0 +1,26 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <header class="jumbotron">
+        <h1>See the Featured Restaurants</h1>
+        <p>
+            <a class="btn btn-primary btn-lg" href="/restaurants/new">Add a new restaurant</a>
+        </p>
+    </header>
+    
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <% for (var restaurant of restaurants){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                    <img src = "<%= restaurant.image %>">
+                    <div class="caption">
+                        <h4><a href="/restaurants/<%= restaurant._id %>"><%= restaurant.name %></a></h4>
+                        <h4><%= restaurant.tag %></h4>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<% include ../partials/footer.ejs %>

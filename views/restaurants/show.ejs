@@ -1,0 +1,56 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="image-responsive" src="<%= restaurant.image %>">
+                <div class="caption-full">
+                    <h4 class="pull-right"><%= restaurant.price || "Price Unavailable" %></h4>
+                    <h4><a><%= restaurant.name %></a></h4>
+                    <p><%= restaurant.description || "Currently no description available" %></p>
+                    <p><em>Profile Created By: <%= restaurant.author.username %></em></p>
+                    <% if(cur_user && restaurant.author.id.equals(cur_user._id)){ %>
+                        <a class="btn btn-warning" href="/restaurants/<%= restaurant._id %>/edit">Edit</a>
+                        <form class="inline-form" action="/restaurants/<%= restaurant._id %>?_method=DELETE", method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-primary" href="/restaurants/<%= restaurant._id %>/comments/new">Post Your Comment for This Restaurant</a>
+                </div>
+                <% for (var c of restaurant.comments){ %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong><%= c.author.username %></strong>
+                        <span class="pull-right">1970-01-01</span>
+                        <p><%= c.content %></p>
+                        <% if(cur_user && c.author.id.equals(cur_user._id)){ %>
+                            <a class="btn btn-xs btn-warning" href="/restaurants/<%= restaurant._id %>/comments/<%= c._id %>/edit">Edit</a>
+                            <form class="inline-form" action="/restaurants/<%= restaurant._id %>/comments/<%= c._id %>?_method=DELETE", method="POST">
+                                <button class="btn btn-xs btn-danger">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="list-group">
+                <li class="list-group-item">Item1</li>
+                <li class="list-group-item">Item2</li>
+                <li class="list-group-item">Item2</li>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</div>
+
+
+<% include ../partials/footer.ejs %>
