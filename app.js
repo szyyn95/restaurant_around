@@ -46,7 +46,6 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// A middleware to pass req.user to all routes
 app.use(function(req, res, next){
     res.locals.cur_user = req.user;
     res.locals.error = req.flash("error");
