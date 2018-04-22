@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var passport = require("passport");
@@ -7,6 +9,8 @@ var mongoose = require("mongoose");
 var flash = require("connect-flash");
 
 var User = require("./models/User");
+var Restaurant = require("./models/Restaurant");
+var Comment = require("./models/Comment");
 var restaurantRoutes = require("./routes/restaurants");
 var commentRoutes = require("./routes/comments");
 var indexRoutes = require("./routes/index");
@@ -19,14 +23,25 @@ app.use(flash());
 
 mongoose.connect("mongodb://localhost/restaurant_around");
 
-/*
-var Restaurant = require("./models/Restaurant");
-Restaurant.remove({}, function(err){
-    if (err){
-        console.log(err);
-    }
-});
-*/
+// Purge data base
+var purge = false;
+if (purge){
+    Restaurant.remove({}, function(err){
+        if (err){
+            console.log(err);
+        }
+    });
+    Comment.remove({}, function(err){
+        if (err){
+            console.log(err);
+        }
+    });
+    User.remove({}, function(err){
+        if (err){
+            console.log(err);
+        }
+    });
+}
 
 // Purge database and fill with seed data
 var reboot = false;

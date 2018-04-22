@@ -22,6 +22,10 @@ h1{
     background-color: #eff7f7;
 }
 
+.general-container{
+    margin-bottom: 100px;
+}
+
 .short-input{
     width: 30%;
 }
@@ -54,4 +58,9 @@ h1{
 
 .inline-form{
     display: inline;
+}
+
+#map{
+    height: 400px;
+    width: 100%;
 }
