@@ -55,6 +55,28 @@ middlewareCollection.comment_modification_user_match = function(req, res, next){
     }
 }
 
+middlewareCollection.userprofile_modification_user_match = function(req, res, next){
+    if (req.isAuthenticated()){
+        User.findById(req.params.uid, function(err, found){
+            if (err || !found){
+                req.flash("error", "Unknow Error: userprofile_modification_user_match fails");
+                res.redirect("back");
+            }
+            else if (found._id.equals(req.user._id)){
+                next();
+            }
+            else{
+                req.flash("error", "You Don't Have Permission for This");
+                res.redirect("back");
+            }
+        });
+    }
+    else{
+        req.flash("error", "Please Login First");
+        res.redirect("/login");
+    }
+}
+
 middlewareCollection.password_match = function(req, res, next){
     if (req.body.password === req.body.password_confirm){
         next();

@@ -9,7 +9,7 @@
                     <h4 class="pull-right"><%= restaurant.price || "Price Unavailable" %></h4>
                     <h4><a><%= restaurant.name %></a></h4>
                     <p><%= restaurant.description || "Currently no description available" %></p>
-                    <p><em>Profile Created By: <%= restaurant.author.username %></em></p>
+                    <p><em>Profile Created By: <a href="/users/<%= restaurant.author.id %>"><%= restaurant.author.username %></a></em></p>
                     <% if(cur_user && restaurant.author.id.equals(cur_user._id)){ %>
                         <a class="btn btn-warning" href="/restaurants/<%= restaurant._id %>/edit">Edit</a>
                         <form class="inline-form" action="/restaurants/<%= restaurant._id %>?_method=DELETE", method="POST">
@@ -25,7 +25,7 @@
                 <% for (var c of restaurant.comments){ %>
                 <div class="row">
                     <div class="col-md-12">
-                        <strong><%= c.author.username %></strong>
+                        <a href="/users/<%= c.author.id %>"><strong><%= c.author.username %></strong></a>
                         <span class="pull-right">1970-01-01</span>
                         <p><%= c.content %></p>
                         <% if(cur_user && c.author.id.equals(cur_user._id)){ %>
@@ -56,7 +56,7 @@
         var lng = <%= restaurant.lng %>;
         var center = {lat: lat, lng: lng };
         var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 8,
+            zoom: 13,
             center: center,
             scrollwheel: false
         });

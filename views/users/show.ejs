@@ -1,0 +1,32 @@
+<% include ../partials/header.ejs %>
+
+<div class="container general-container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2><%= user.username %>'s Profile</h2>
+            <p><%= user.lastname || "Last Name Unknown" %>, <%= user.firstname || "First Name Unknown" %></p>
+            <p><%= user.email || "Email Unknown" %></p>
+            <% if(cur_user && user._id.equals(cur_user._id)){ %>
+                <a class="btn btn-xs btn-warning" href="/users/<%= user._id %>/edit">Edit Your Profile</a>
+            <% } %>
+        </div>
+        <div class="col-md-8">
+            <h2>Reataurants Posted by This User</h2>
+            <div class="row">
+                <% for (var restaurant of restaurants){ %>
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <img src="<%= restaurant.image %>">
+                            <div class="caption">
+                                <h4><%= restaurant.name %></h4>
+                                <p><a href="/restaurants/<%= restaurant._id %>" class="btn btn-primary" role="button">Go to This Restaurant</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer.ejs %>
